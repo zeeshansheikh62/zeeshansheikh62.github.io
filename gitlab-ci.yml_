@@ -1,0 +1,40 @@
+stages:
+  - build
+  - test
+  - deploy
+  - cleanup
+
+build:
+  stage: build
+  script:
+    - echo "Building the application..."
+    - echo "Hello, World! from the build stage"
+    - mkdir build
+    - touch build/somefile.txt
+  artifacts:
+    paths:
+      - build/
+
+test_file:
+  image: alpine
+  stage: test
+  script:
+    - test -f build/somefile.txt
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - echo "Hello, World! from the test stage"
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the application..."
+    - echo "Hello, World! from the deploy stage"
+
+cleanup:
+  stage: cleanup
+  script:
+    - echo "Cleaning up resources..."
+    - echo "Pipeline execution completed successfully!"
